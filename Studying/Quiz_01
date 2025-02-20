@@ -1,0 +1,217 @@
+I. Lecture One - Introduction
+    A. We went over 
+        1. The definitions of packages, directories
+        2. Importing necessary packages, importing a data set, creating a table and naming columns for that data set, creating a scatterplot
+    B. Relevant code
+        carfeatures = pd.read_csv('data/features.csv') #how to import
+
+        table = pd.crosstab(index = carfeatures['cylinders'],columns = "count") #compute a frequency table
+
+        carfeatures.describe() #how to find mean, standard dev, etc
+
+        plt.scatter(x = carfeatures['weight'], y = carfeatures['mpg']) #create a scatterplot
+        plt.show()
+
+        plt.scatter(x = china_emissions['year'], y = china_emissions['total_emissions']) #slightly more complex scatterplot
+        plt.title("Total Emissions for China by Year")
+        plt.xlabel("Year")
+        plt.ylabel("Total_Emissions")
+        plt.show()
+
+
+II. Lecture Two - Variables and Lists
+
+    A. We went over
+        1. Types of variables and how to check for variable type (integers, floats (have a decimal), strings)
+        2. How to assign a variable name
+        3. Concatenation
+        4. How to perform operations on variables
+        5. How to create lists
+        6. How to call out a specific value from a list (remember that the first position is known as zero)
+        7. Visualizing lists
+
+    B. Relevant Code
+        type(3) #type - how to check for variable type
+
+        name = "Alejandro" #Creating a variable
+
+        name = "Joanna" #Concatenating
+        major = "Neuroscience"
+        print("I am " + name + " majoring in " + major)
+
+        list_colors = ["red","yellow","yellow", "green","red"] #Creating a list
+
+        floors_england[0] #Call out a specific input for the list
+
+        plt.hist(x= list_colors) #histogram with list
+
+        plt.scatter(x = list_numbers, y = list_numbers_sqr) #Scatterplot with list
+        plt.xlabel("A meaningful name for the X-axis")
+        plt.ylabel("Favourite name for Y-axis")
+        plt.show()
+
+III. Lecture Three - Mathematical Operations and Random Numbers
+    A. What we went over
+        1. What numpy is
+        2. Creating a vector array (one of the functionalities of the numpy package
+        3. Operations on arrays and calculating descriptive stats for them
+        4. Random numbers
+        5. What a seed is (basically just a random set of numbers - specifies which group of random numbers you want)
+
+        # log(x) computes the logarithm with base "e" (Euler constant)
+        # exp(x) compute the Euler constant raised to the power of "x"
+        # sing(x) computes the sine of x
+        # cos(x) computes the cosine of x
+        # In this example, we're substituting x = 1
+    
+    B. Relevant code
+        x = 10 #Writing a calculation
+        x ** 5
+
+        vec_a  = np.array([1,2,3]) #Creating an array
+
+        print(vec_a * vec_b) #working with multiple arrays - it works element by element
+
+        print(np.mean(vec_a)) #Summary stats
+        print(np.std(vec_a))
+        print(np.min(vec_a))
+        print(np.median(vec_a))
+        print(np.max(vec_a))
+
+        # This code creates a vector of random variables  #Random Numbers stuff
+        # generated from a normal distribution with
+        # mean "loc" (location) and standard deviation "scale"
+        # the number of distinct variabels is "size"
+        randomvar_a = np.random.normal(loc=0, scale=1, size=10)
+        #location = where the distribution is centered
+        #size = the number of vectors
+        print(randomvar_a)
+
+        np.random.seed(22) # set seed - means numbers are still random, but it doesn't change each time
+
+        randomvar_x = np.random.normal(loc=0, scale=1, size=1000) #Plotting random variables
+        plt.hist(x = randomvar_x)
+        plt.xlabel("Variable a")
+        plt.ylabel("Frequency")
+
+IV. Lecture Four - Boolean Variables and If Else Statements
+    A. What we went over
+        1. What a boolean variable is (it's whether we know something is true or false)
+        2. Comparing two things (use == double equals sign)
+        3. Check on variable type - isinstance(variable, type)
+        4. Adding the prefix not
+        5. And/or conditions for boolean statements
+        6. If/else statements
+
+        # Test expression
+        #---- We type "if" followed by a logical condition and the ":" symbol.
+        #---- The ":" says: run the following command 
+        #
+        # Body of expression
+        #---- The "body" of the "if" statement needs to indented
+        #---- You can indent text by pressing the "tab" button in your keyborad.
+        #
+        # If the condition is true, a message will appear.
+        # If the condition is false, then nothing happens
+
+    B. Relevant code
+        keyword = "economic" #test for keyword in context
+        sentence = "The Federal Reserve makes forecasts about many economic outcomes"
+        keyword in sentence
+
+        x = 5 #test things about a number
+        print( x < 5 )
+        print( x <= 5 )
+        print( x == 5 )
+        print( x >= 5 )
+        print( x > 5 )
+
+        age  = 22 #Example of using not
+        # Can this person legally vote in the US?
+        not (age < 18)
+
+        age = 31 #Example of using and (using or would require |)
+        # Is this age between 20 and 30 (including these ages)?
+        ( age >= 20 ) & (age <= 30)
+
+        years_in_program = 1 #If else statement
+        if years_in_program == 1:
+            print("This student is a freshman")
+        elif years_in_program == 2:
+            print("This student is a sophomore")
+        elif years_in_program == 3:
+            print("This student is a junior")
+        else:
+            print("This student is a senior")
+
+V. Lecture 5 - Loops
+    A. What we went over
+        1. What a null value is
+        2. Appending new values to a list
+        3. Difference between operations on a list vs array (if you were to multiply a list by a number, it would just repeat the list)
+        4. Counting lengths of vectors
+        5. For loops
+            for value in list values: 
+                value body
+        6. Plotting using for loops
+    
+    B. Relevant code
+    list_answers = [None,None,None] #Adding a null value
+
+    new_list = [] #Append to a new list
+    new_list.append("Nashville")
+    new_list.append("Bogota")
+
+    print(len(list_answers)) #Calculate length of an array
+
+    list_ids = ["KIA", "Ferrari", "Ford", "Tesla"] #for loop example
+    index = 1
+    print('We are out of the loop', index)
+    for id in list_ids:
+        print("Dear customer, your position is " + str(index) + " on the waitlist" +
+            " and your car brand is " + id )
+        index = index + 1
+        print('We are inside the loop', index)
+    
+    for i in range(len(list_ids)): #for loop using i example
+    print("Dear customer, your position is " + str(i+1) + " on the waitlist" +
+           " and your car brand is " + list_ids[i])
+
+    carfeatures = pd.read_csv("data/features.csv") #Plotting using for loop
+    list_vars   = ["acceleration","weight"]
+    index = 1 
+    for variable_name in list_vars:
+        plt.scatter(x= carfeatures[variable_name], y = carfeatures["mpg"])
+        plt.ylabel("mpg")
+        plt.xlabel(variable_name)
+        plt.title("Figure " + str(index))
+        plt.show()
+        index = index + 1
+
+    # Create a list of x-values list_x = [1,2,4,5, ..., 50] # for loop w math
+    # Create a list of y-values to fill in later.
+    # The "range(
+    list_x = [1,2,4,5,6,7,8,9,10]
+    list_y = [None] * len(list_x)
+    # Create an index 
+    index = 0 #initialize list at zero
+    for x in list_x:
+        list_y[index] = list_x[index]**2 + 2*list_x[index]
+        index = index + 1
+    # Display results visually
+    print(list_y)
+    plt.scatter(list_x, list_y)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-axis")
+
+VI. Lecture 6 - Applications One - Simulation Studies
+    A. What we went over
+        1. Simulating using different distributions
+        2. Multiple plots on one graph
+        3. Create a list using list(range(n))
+        4. Nested loops
+        5. Confidence intervals
+
+
+
+
