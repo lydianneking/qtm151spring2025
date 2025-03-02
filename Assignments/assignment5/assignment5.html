@@ -844,7 +844,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 |----------------------------------------------------------------------------*/
 
 @charset "UTF-8";
-/*
+/*!
 
 Copyright 2015-present Palantir Technologies, Inc. All rights reserved.
 Licensed under the Apache License, Version 2.0.
@@ -14276,7 +14276,7 @@ Print your name below</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14320,12 +14320,10 @@ Print your name below</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 
@@ -14348,7 +14346,7 @@ Print your name below</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14382,7 +14380,7 @@ $\quad$ <code>new_path  = new_directory +  dataset_name</code></li>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14399,16 +14397,10 @@ $\quad$ <code>new_path  = new_directory +  dataset_name</code></li>
 <span class="n">new_path</span> <span class="o">=</span> <span class="n">new_directory</span> <span class="o">+</span> <span class="n">dataset_name</span>
 
 <span class="c1">#read csv in old location</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">old_path</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">old_path</span><span class="p">)</span>
 
-<span class="c1">#save csv to the new location (the one with the new_path = new_directory + dataset_name)</span>
-
-<span class="c1">#This part is from what I found online?? I&#39;m confused</span>
-<span class="c1"># Read the CSV file from the old location</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">old_path</span><span class="p">)</span>
-
-<span class="c1"># Save the CSV file to the new location</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">new_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1">#save to new path</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14437,12 +14429,10 @@ $\quad$ <code>new_path  = new_directory +  dataset_name</code></li>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[72]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
-
-<span class="c1">#get wd</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#get wd</span>
 <span class="n">current_directory</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
 
 <span class="c1">#print wd</span>
@@ -14507,7 +14497,7 @@ where "Filename" is replaced with the actual file that doesn't begin with "m".</
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14577,7 +14567,7 @@ $\quad $ $ (F = 77)$</li>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14586,11 +14576,11 @@ $\quad $ $ (F = 77)$</li>
 <span class="k">def</span> <span class="nf">f_to_c</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">9</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">f</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="c1">#don&#39;t forget return!</span>
 
-<span class="c1">#when F = 50</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f_to_c</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+<span class="c1">#when f = 50</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temperature in Celsius is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">f_to_c</span><span class="p">(</span><span class="mi">50</span><span class="p">)))</span>
 
-<span class="c1">#when F = 77</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f_to_c</span><span class="p">(</span><span class="mi">77</span><span class="p">))</span>
+<span class="c1">#when f = 77</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temperature in Celsius is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">f_to_c</span><span class="p">(</span><span class="mi">77</span><span class="p">)))</span>
 </pre></div>
 
      </div>
@@ -14610,8 +14600,8 @@ $\quad $ $ (F = 77)$</li>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>10.0
-25.0
+<pre>The temperature in Celsius is 10.0
+The temperature in Celsius is 25.0
 </pre>
 </div>
 </div>
@@ -14638,7 +14628,7 @@ $\quad $ $ (F = 77)$</li>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[69]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer</span>
@@ -14646,16 +14636,16 @@ $\quad $ $ (F = 77)$</li>
 <span class="c1">#Importing function</span>
 
 <span class="c1"># I was getting errors when I did import scripts/auxiliaryfunction.py as af</span>
-<span class="c1">#So I looked it up online and did this instead (from _ import _ as _)</span>
+<span class="c1">#So I looked it up online and did this instead (from _ import _ as _) - I think this is because I had put it in a subfolder, just to make my vscode folders more organized</span>
 <span class="c1">#I also had to rename the scripts folder, since python was confused about which scripts folder I was referencing</span>
 
 <span class="kn">from</span> <span class="nn">assignment_five_scripts</span> <span class="kn">import</span> <span class="n">auxiliaryfunction</span> <span class="k">as</span> <span class="n">af</span>
 
 <span class="c1">#Inputting values</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">af</span><span class="o">.</span><span class="n">c_to_f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temperature in Fahrenheit is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">af</span><span class="o">.</span><span class="n">c_to_f</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">af</span><span class="o">.</span><span class="n">c_to_f</span><span class="p">(</span><span class="mi">25</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The temperature in Fahrenheit is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">af</span><span class="o">.</span><span class="n">c_to_f</span><span class="p">(</span><span class="mi">25</span><span class="p">)))</span>
 </pre></div>
 
      </div>
@@ -14675,8 +14665,8 @@ $\quad $ $ (F = 77)$</li>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>50.0
-77.0
+<pre>The temperature in Fahrenheit is 50.0
+The temperature in Fahrenheit is 77.0
 </pre>
 </div>
 </div>
