@@ -14432,7 +14432,7 @@ another with weight $\le$ 2588. Use the <code>.query()</code> function.</li>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer here:</span>
@@ -14727,7 +14727,7 @@ Reference the column as <code>`Wage(in Euro)`</code> inside .query()</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[63]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer here:</span>
@@ -14794,7 +14794,7 @@ Reference the column as <code>`Wage(in Euro)`</code> inside .query()</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[84]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[85]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write your answer here:</span>
@@ -14805,13 +14805,10 @@ Reference the column as <code>`Wage(in Euro)`</code> inside .query()</p>
 <span class="c1"># Create a list with unique values of &quot;year&quot;</span>
 <span class="n">list_urban_unique</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">urban</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
 
-<span class="c1"># Creating subsets for each unique year</span>
-<span class="n">subset_1980</span> <span class="o">=</span> <span class="n">urban</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year == 1980&quot;</span><span class="p">)</span>
-<span class="n">subset_2020</span> <span class="o">=</span> <span class="n">urban</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year == 2020&quot;</span><span class="p">)</span>
-
 <span class="c1"># Plotting histograms</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">subset_1980</span><span class="p">[</span><span class="s2">&quot;prop_urbanpopulation&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;1980&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">subset_2020</span><span class="p">[</span><span class="s2">&quot;prop_urbanpopulation&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2020&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">list_urban_unique</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">urban</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year == @year&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;prop_urbanpopulation&quot;</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
 
 <span class="c1"># Label the axes and title</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Proportion Urban Population&quot;</span><span class="p">)</span>
