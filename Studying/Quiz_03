@@ -1,0 +1,1104 @@
+I. Questions I have for TA's
+    A. How do I run only a section of my code? - Just create a new code chunk
+    B. I still don't understand for looops
+
+
+I. Lecture One - Introduction
+    A. We went over 
+        1. The definitions of packages, directories
+        2. Importing necessary packages, importing a data set, creating a table and naming columns for that data set, creating a scatterplot
+    B. Relevant code
+        carfeatures = pd.read_csv('data/features.csv') #how to import
+
+        table = pd.crosstab(index = carfeatures['cylinders'],columns = "count") #compute a frequency table
+
+        carfeatures.describe() #how to find mean, standard dev, etc
+
+        plt.scatter(x = carfeatures['weight'], y = carfeatures['mpg']) #create a scatterplot
+        plt.show()
+
+        plt.scatter(x = china_emissions['year'], y = china_emissions['total_emissions']) #slightly more complex scatterplot
+        plt.title("Total Emissions for China by Year")
+        plt.xlabel("Year")
+        plt.ylabel("Total_Emissions")
+        plt.show()
+
+
+II. Lecture Two - Variables and Lists
+
+    A. We went over
+        1. Types of variables and how to check for variable type (integers, floats (have a decimal), strings)
+        2. How to assign a variable name
+        3. Concatenation
+        4. How to perform operations on variables
+        5. How to create lists
+        6. How to call out a specific value from a list (remember that the first position is known as zero)
+        7. Visualizing lists
+
+    B. Relevant Code
+        type(3) #type - how to check for variable type
+
+        name = "Alejandro" #Creating a variable
+
+        name = "Joanna" #Concatenating
+        major = "Neuroscience"
+        print("I am " + name + " majoring in " + major)
+
+        list_colors = ["red","yellow","yellow", "green","red"] #Creating a list
+
+        floors_england[0] #Call out a specific input for the list
+
+        plt.hist(x= list_colors) #histogram with list
+
+        plt.scatter(x = list_numbers, y = list_numbers_sqr) #Scatterplot with list
+        plt.xlabel("A meaningful name for the X-axis")
+        plt.ylabel("Favourite name for Y-axis")
+        plt.show()
+
+III. Lecture Three - Mathematical Operations and Random Numbers
+    A. What we went over
+        1. What numpy is
+        2. Creating a vector array (one of the functionalities of the numpy package
+        3. Operations on arrays and calculating descriptive stats for them
+        4. Random numbers
+        5. What a seed is (basically just a random set of numbers - specifies which group of random numbers you want)
+
+        # log(x) computes the logarithm with base "e" (Euler constant)
+        # exp(x) compute the Euler constant raised to the power of "x"
+        # sing(x) computes the sine of x
+        # cos(x) computes the cosine of x
+        # In this example, we're substituting x = 1
+    
+    B. Relevant code
+        x = 10 #Writing a calculation
+        x ** 5
+
+        vec_a  = np.array([1,2,3]) #Creating an array
+
+        print(vec_a * vec_b) #working with multiple arrays - it works element by element
+
+        print(np.mean(vec_a)) #Summary stats
+        print(np.std(vec_a))
+        print(np.min(vec_a))
+        print(np.median(vec_a))
+        print(np.max(vec_a))
+
+        # This code creates a vector of random variables  #Random Numbers stuff
+        # generated from a normal distribution with
+        # mean "loc" (location) and standard deviation "scale"
+        # the number of distinct variabels is "size"
+        randomvar_a = np.random.normal(loc=0, scale=1, size=10)
+        #location = where the distribution is centered
+        #size = the number of vectors
+        print(randomvar_a)
+
+        np.random.seed(22) # set seed - means numbers are still random, but it doesn't change each time
+
+        randomvar_x = np.random.normal(loc=0, scale=1, size=1000) #Plotting random variables
+        plt.hist(x = randomvar_x)
+        plt.xlabel("Variable a")
+        plt.ylabel("Frequency")
+
+IV. Lecture Four - Boolean Variables and If Else Statements
+    A. What we went over
+        1. What a boolean variable is (it's whether we know something is true or false)
+        2. Comparing two things (use == double equals sign)
+        3. Check on variable type - isinstance(variable, type)
+        4. Adding the prefix not
+        5. And/or conditions for boolean statements
+        6. If/else statements
+
+        # Test expression
+        #---- We type "if" followed by a logical condition and the ":" symbol.
+        #---- The ":" says: run the following command 
+        #
+        # Body of expression
+        #---- The "body" of the "if" statement needs to indented
+        #---- You can indent text by pressing the "tab" button in your keyborad.
+        #
+        # If the condition is true, a message will appear.
+        # If the condition is false, then nothing happens
+
+    B. Relevant code
+        keyword = "economic" #test for keyword in context
+        sentence = "The Federal Reserve makes forecasts about many economic outcomes"
+        keyword in sentence
+
+        x = 5 #test things about a number
+        print( x < 5 )
+        print( x <= 5 )
+        print( x == 5 )
+        print( x >= 5 )
+        print( x > 5 )
+
+        age  = 22 #Example of using not
+        # Can this person legally vote in the US?
+        not (age < 18)
+
+        age = 31 #Example of using and (using or would require |)
+        # Is this age between 20 and 30 (including these ages)?
+        ( age >= 20 ) & (age <= 30)
+
+        years_in_program = 1 #If else statement
+        if years_in_program == 1:
+            print("This student is a freshman")
+        elif years_in_program == 2:
+            print("This student is a sophomore")
+        elif years_in_program == 3:
+            print("This student is a junior")
+        else:
+            print("This student is a senior")
+
+V. Lecture 5 - Loops
+    A. What we went over
+        1. What a null value is
+        2. Appending new values to a list
+        3. Difference between operations on a list vs array (if you were to multiply a list by a number, it would just repeat the list)
+        4. Counting lengths of vectors
+        5. For loops
+            for value in list values: 
+                value body
+        6. Plotting using for loops
+    
+    B. Relevant code
+    list_answers = [None,None,None] #Adding a null value
+
+    new_list = [] #Append to a new list
+    new_list.append("Nashville")
+    new_list.append("Bogota")
+
+    print(len(list_answers)) #Calculate length of an array
+
+    list_ids = ["KIA", "Ferrari", "Ford", "Tesla"] #for loop example
+    index = 1
+    print('We are out of the loop', index)
+    for id in list_ids:
+        print("Dear customer, your position is " + str(index) + " on the waitlist" +
+            " and your car brand is " + id )
+        index = index + 1
+        print('We are inside the loop', index)
+    
+    for i in range(len(list_ids)): #for loop using i example
+    print("Dear customer, your position is " + str(i+1) + " on the waitlist" +
+           " and your car brand is " + list_ids[i])
+
+    carfeatures = pd.read_csv("data/features.csv") #Plotting using for loop
+    list_vars   = ["acceleration","weight"]
+    index = 1 
+    for variable_name in list_vars:
+        plt.scatter(x= carfeatures[variable_name], y = carfeatures["mpg"])
+        plt.ylabel("mpg")
+        plt.xlabel(variable_name)
+        plt.title("Figure " + str(index))
+        plt.show()
+        index = index + 1
+
+    # Create a list of x-values list_x = [1,2,4,5, ..., 50] # for loop w math
+    # Create a list of y-values to fill in later.
+    # The "range(
+    list_x = [1,2,4,5,6,7,8,9,10]
+    list_y = [None] * len(list_x)
+    # Create an index 
+    index = 0 #initialize list at zero
+    for x in list_x:
+        list_y[index] = list_x[index]**2 + 2*list_x[index]
+        index = index + 1
+    # Display results visually
+    print(list_y)
+    plt.scatter(list_x, list_y)
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-axis")
+
+VI. Lecture 6 - Applications One - Simulation Studies
+    A. What we went over
+        1. Simulating using different distributions
+        2. Multiple plots on one graph
+        3. Create a list using list(range(n))
+        4. Nested loops
+        5. Confidence intervals
+    
+VII. Lecture 7 - User-defined functions
+    A. What we went over
+        1. Some functions are built-in, like length
+        2. Creating arrays of random numbers
+        3. Defining your own functions
+                def my_function(parameter):
+                    body
+                    return expression
+        4. Define a function using if else
+        5. Lambda functions - define a function in one line (my_function = lambda parameters: expression)
+    B. Relevant code 
+        1. Arrays of random numbers: chi square and normal
+            vec_x = np.random.chisquare(df = 2, size = 20) #chi square
+            vec_y = np.random.normal(loc = 2, scale = 1, size = 20) #This line of code generates an array of 20 random numbers drawn from a normal (Gaussian) distribution with a mean of 2 and a standard deviation of 1. 
+        2. Basic examples
+            def function_v(P, r,n, t):
+                v = P*(1+(r/n))**(n*t)
+                return v
+            def myfunction(x, y): 
+                result = y + x**2 + 2*x + 1
+                result(z)
+        3. If/else statement with function
+            def myfunction(numeric_grade):
+                if numeric_grade >= 55:
+                    message = "status = pass"
+                else:
+                    message = "status = fail"
+                return message
+
+            myfunction(45)
+        4. function that prints a statement
+            def carorder(first_name,last_name,car_model):
+                return "Dear customer " + first_name + " " + last_name + ", your car model " + car_model + " is ready"
+            carorder("Alejandro", "Sanchez","KIA")
+        5. Lambda function 
+            # (a) Define function
+                    fn_sum = lambda x,y,z: x + y + z
+
+                    # (b) Run function
+                    fn_sum(1,2,3)
+        6. Function with boolean statements
+            def fn_iseligible_vote (age): 
+                if age >= 18:
+                    print("At " + str(age) + " you are eligible to vote")
+                else: 
+                    print("At " + str(age) + " you are NOT eligible to vote")
+
+
+            list_ages = [18, 29, 15, 32, 6]
+
+            for age in list_ages: 
+                fn_iseligible_vote(age)
+
+    VIII. Lecture 8 - Local/global variables and apply
+        A. What we went over 
+            1. Local variables are like "scratch paper" - stored temporarily while function is running 
+            2. Permanently changing a variable
+            3. Apply(myfunction) -  Takes a dataframe series (a column vector) as an input and computes function separately for each individual
+            4. Dropping a variable
+            5. Using the map function
+        B. Relevant code 
+            1. Local vs global
+                def fn_square(x):
+                    y = x**2
+                    return(y)
+
+                x = 10
+                y = -5
+
+                #using local variable
+                print(fn_square(x = 1))
+                #using global variables
+                print(x)
+                print(y)
+            2. Permanently changing a variable
+                def modify_x():
+                    global x
+                    x = x + 5
+
+                x = 1
+                # Now, running the function wil permanently increase x by 5.
+                modify_x()
+                print(x)
+            3. Using "apply" to make new variables
+                data["can_vote"]    = data["age"].apply(fn_iseligible_vote)
+                data["in_twenties"] = data["age"].apply(fn_istwenties)
+                data["age_bracket"] = data["age"].apply(fn_agebracket)
+            4. Dropping a variable
+                data = data.drop(columns=['new_var'])
+            5. Using map function
+                data["num_siblings"] = list(map(fn_sum,
+                                data["num_underage_siblings"],
+                                data["num_adult_siblings"]))
+            6. Using the map function on a list
+            # Create the lambda function
+                fruit_color = lambda fruit, color: "A " + fruit + " is " + color
+
+                # Create the lists
+                list_fruits = ["banana", "strawberry", "kiwi"]
+                list_colors = ["yellow", "red", "green"]
+
+                # Use the map function to apply the lambda function to the lists
+                result = list(map(fruit_color, list_fruits, list_colors))
+
+                # Print the result
+                print(result)
+            7. Using apply with boolean statements
+                def mpg_above_29 (mpg):
+                    if mpg >= 29:
+                        return True
+                    else: 
+                        return False
+
+                cars['mpg_above_29'] = cars['mpg'].apply(mpg_above_29)
+
+        IX. Lecture 10 - Subsetting Data 
+            A. What we went over: 
+                1. Extracting column names, and looking at specific attributes 
+                2. Subset by row/column position
+                3. using iloc
+                    COLUMNS: 
+                        data.iloc[ : , col_integer ]
+                    ROWS: 
+                        data.iloc[ lower:upper , : ]
+                4. using query 
+                    a. data.query("logical expression")
+                    b. remember that if you're referencing a global variable, use the @symbol
+                    c. how to deal with spaces
+                5. using pd_unique
+                    Use pd.unique() to extract a list with the unique elements in that column
+                6. subsetting a dataset and then putting on one plot
+            B. Relevant Code 
+                1. column names and extracting values
+                    type(carfeatures.columns.values)
+                    car_colnames = carfeatures.columns.values
+                2. subsetting multiple columns
+                    list_subsetcols = ["weight","mpg"]
+                    subcols_carfeatures = carfeatures[list_subsetcols]
+                    display(subcols_carfeatures)
+                3. subset by row/column position - DESCENDING
+                    carsorted = carfeatures.sort_values(by = "mpg", ascending = False) #ascending = false, which means we are sorting in decreasing values
+                    display(carsorted)
+                4. using iloc example: 
+                display(carsorted.iloc[[0,1,2],:])
+                          make    model  mpg
+                    0   Toyota    Camry   30
+                    1    Honda    Civic   32
+                    2     Ford  Mustang   25
+                    So, carsorted.iloc[[0, 1, 2]] selects the rows at positions 0, 1, and 2 from the carsorted DataFrame. 
+
+
+                        # Extract rows 0 to 5
+                        display(carfeatures.iloc[   0:5    ,   :   ])   #extracting rows zero to five, with all columns
+
+                        # Extract rows 8 onwards
+                        display(carfeatures.iloc[:8, : ])  #:8 is equivalent to doing zero to 8
+
+                        # Note: We can leave the numbers to the left and right of ":" blank
+                        # in order to select all values before or after, respectively.
+
+                    car_ascendingmpg = carfeatures.sort_values(by = "mpg") 
+                    display (car_ascendingmpg.iloc [0:5, :])
+            5. Using query
+                carfeatures.query("(acceleration >= 10) and (acceleration < 18)") #note that the query is always entered as a string
+
+                threshold = 25
+                data_varthreshold_mpg = carfeatures.query("mpg >= @threshold") #to ensure that this works, we need to use the @ symbol
+
+                carfeatures["new variable"] = carfeatures["mpg"]
+                data_spacesthreshold_mpg = carfeatures.query("`new variable` >= 25")
+            6. using pd_unique
+                list_unique_cylinders = pd.unique(carfeatures["cylinders"])
+                print(list_unique_cylinders)
+            7. overlapping scatterplot (overlapping histogram is in HW 6)
+                # Compute number of unique categories
+                    list_unique_cylinders = pd.unique(carfeatures["cylinders"]) #remember that a loop usually starts by defining a list
+
+                    # Use a for loop to plot a scatter plot between "weight" and "acceleration"
+                    # for each category. Each plot  will have a different color
+
+                    for category in list_unique_cylinders: 
+                        df   = carfeatures.query("cylinders == @category")
+                        plt.scatter(x = df["weight"],y = df["acceleration"])
+                        
+                    # Add labels and a legends    
+                    plt.xlabel("Weight")
+                    plt.ylabel("Acceleration")
+                    plt.legend(labels = list_unique_cylinders,
+                            title  = "Cylinders")
+                    plt.show()
+    X. Lecture 11 - Linear Regression
+        A. What we went over 
+            1. We create fake data that follows y = 1 + 2x + e.
+            2. We plot the data and a best-fit line.
+            3. We use OLS regression to estimate the best-fit line.
+            4. We compare the real and estimated lines.
+            5. We measure errors and check how well our model did.
+            6. Also: using mean and standard deviation
+        B. Relevant code 
+            1. Plotting theoretical best fit line 
+                plt.scatter(x = dataset["x"], y = dataset["y"])
+                plt.plot(dataset["x"],dataset["p"], color = 'green') # this is what makes our line of best fit
+                plt.xlabel("X Variable")
+                plt.ylabel("Y Variable")
+                plt.legend(labels = ["Data points", "Best fit line"])
+                plt.show()
+            2. Fitting an OLS Model 
+
+                model = smf.ols(formula = 'y ~  x', data = dataset)
+                results = model.fit()
+                # We will use ".params" to get the attribute "parameters from the results"
+
+                b_list = results.params
+                print(b_list)
+
+                # We can then compute the "estimated" best fit lines
+                # by extracting the intercept and slope from "b_list"
+
+                dataset["p_estimated"] = b_list[0] + b_list[1]  * dataset["x"] #dataset["name"] = parameters[B0] + parameters[B1]* dataset["x"]
+
+                # Note: The estimators for "b0" and "b1" are close to 
+                # the values we used to generate the data
+            3. Check how model did
+                # Write your own code
+
+                    # Compute the sample error
+                    dataset["sample_error"] = dataset["y"] - dataset["p_estimated"]
+
+                    # Create a lambda function to check if the error is positive
+                    fn_positive_error = lambda error: error >= 0
+
+                    # Compute a column for whether the error is positive using .apply()
+                    dataset["positive_error"] = dataset["sample_error"].apply(fn_positive_error)
+
+                    # Display the dataset with the new columns
+                    print(dataset)
+    XI. Lecture 12 - Replacing and recoding variables
+    
+
+2. Identify NaNs and perform vector operations
+Create two numpy arrays:
+vec_a = np.array([1, 1, 1])
+vec_b = np.array([np.nan, 4, 5])
+
+Print the result of adding, subtracting, multiplying, and dividing these vectors
+
+python
+Copy
+Edit
+vec_a = np.array([1, 1, 1])
+vec_b = np.array([np.nan, 4, 5])
+
+print("Addition:", vec_a + vec_b)
+print("Subtraction:", vec_a - vec_b)
+print("Multiplication:", vec_a * vec_b)
+print("Division:", vec_a / vec_b)
+
+
+3. Compute summary statistics with and without NaNs
+Use np.mean() and np.nanmean() on vec_b
+
+Assign vec_b as a column in a new DataFrame df
+
+Use .mean() to compute the mean of the column
+
+python
+Copy
+Edit
+print("Mean with NaNs:", np.mean(vec_b))         # Will return nan
+print("Mean ignoring NaNs:", np.nanmean(vec_b))  # Will return average of [4, 5]
+
+df = pd.DataFrame()
+df["x"] = vec_b
+print("Mean from DataFrame:", df["x"].mean())
+
+
+4. Data cleaning: identify and replace non-numeric values
+Check which values in the "alt" column are non-numeric
+
+Replace '\\N' with np.nan, and '-7' with -7 (already numeric)
+
+Reassign cleaned values to "alt" column
+
+python
+Copy
+Edit
+non_numeric = circuits.query("alt.str.isnumeric() == False")
+print("Unique non-numeric values in 'alt':", pd.unique(non_numeric["alt"]))
+
+list_old = ['\\N','-7']
+list_new = [np.nan, -7]
+circuits["alt"] = circuits["alt"].replace(list_old, list_new)
+
+
+5. Replace a country name
+Replace all instances of "USA" with "United States" in the "country" column
+
+python
+Copy
+Edit
+circuits["country"] = circuits["country"].replace("USA", "United States")
+
+
+6. Explore column data types
+Print the data types of "lat" and "lng"
+
+Explain why we can’t use .str.isnumeric() on them
+
+python
+Copy
+Edit
+print("Latitude type:", circuits["lat"].dtype)
+print("Longitude type:", circuits["lng"].dtype)
+
+# Reasoning:
+# These columns are already numeric (likely float64),
+# so string operations like .str.isnumeric() cannot be used.
+
+
+7. Convert 'alt' column to numeric
+Use pd.to_numeric() on the cleaned "alt" column and assign to "alt_numeric"
+
+Compute the mean, min, and max of the new column
+
+python
+Copy
+Edit
+circuits["alt_numeric"] = pd.to_numeric(circuits["alt"])
+print("Mean altitude:", circuits["alt_numeric"].mean())
+print("Min altitude:", circuits["alt_numeric"].min())
+print("Max altitude:", circuits["alt_numeric"].max())
+
+
+8. Recode altitude into bins
+Recode "alt_numeric" into two categories:
+0 < alt ≤ 2500 → "Between 0 and 2500"
+2500 < alt ≤ 5000 → "Between 2500 and 5000"
+
+Store this as a new column called "bins_alt"
+
+python
+Copy
+Edit
+bins_x = [0, 2500, 5000]
+labels_x = ["Between 0 and 2500", "Between 2500 and 5000"]
+
+circuits["bins_alt"] = pd.cut(circuits["alt_numeric"], 
+                              bins=bins_x, 
+                              right=True, 
+                              labels=labels_x)
+display(circuits[["alt_numeric", "bins_alt"]].head())
+
+
+9. Recode latitude into hemispheres
+Create a new variable "hemisphere" where:
+lat ∈ (-90, 0] → "south"
+lat ∈ (0, 90] → "north"
+
+python
+Copy
+Edit
+def recode_hemisphere(lat):
+    if (lat > -90) and (lat <= 0):
+        return "south"
+    elif (lat > 0) and (lat <= 90):
+        return "north"
+    else:
+        return np.nan  # handle NaNs or edge cases
+
+circuits["hemisphere"] = circuits["lat"].apply(recode_hemisphere)
+display(circuits[["lat", "hemisphere"]].head())
+
+
+Lesson 14
+
+2. Explore the dataset
+How many rows are in the dataset?
+
+How many unique values are in the columns "resultId", "raceId", and "driverId"?
+
+python
+Copy
+Edit
+print("Total rows:", len(results))
+print("Unique resultIds:", len(pd.unique(results["resultId"])))
+print("Unique raceIds:", len(pd.unique(results["raceId"])))
+print("Unique driverIds:", len(pd.unique(results["driverId"])))
+
+
+3. Basic aggregate statistics using .agg()
+Use .agg() to compute:
+
+Mean, std, min, max, and count of the "points" column
+
+python
+Copy
+Edit
+results_agg = results.agg(mean_points = ('points','mean'),
+                          sd_points =   ('points','std'),
+                          min_points =  ('points','min'),
+                          max_points =  ('points','max'),
+                          count_obs   = ('points', len))
+
+display(results_agg)
+
+
+
+4. Group by a single variable (driverId)
+Group by "driverId" and compute the same five statistics for "points"
+
+python
+Copy
+Edit
+drivers_agg = (results.groupby("driverId")
+                      .agg(mean_points = ('points','mean'),
+                           sd_points =   ('points','std'),
+                           min_points =  ('points','min'),
+                           max_points =  ('points','max'),
+                           count_obs   = ('points', len)))
+
+display(drivers_agg.head())
+
+
+
+5. Group by multiple variables
+Group by both "raceId" and "constructorId" and compute the same five statistics for "points"
+
+python
+Copy
+Edit
+teamrace_agg = (results.groupby(["raceId", "constructorId"])
+                       .agg(mean_points = ('points','mean'),
+                            sd_points =   ('points','std'),
+                            min_points =  ('points','min'),
+                            max_points =  ('points','max'),
+                            count_obs   = ('points', len)))
+
+display(teamrace_agg.head())
+
+
+
+6. Filter, then group and aggregate
+Subset the data to raceId >= 500, then compute grouped stats by "raceId" and "constructorId"
+
+python
+Copy
+Edit
+teamrace_filtered = (results.query("raceId >= 500")
+                             .groupby(["raceId", "constructorId"])
+                             .agg(mean_points = ('points','mean'),
+                                  sd_points =   ('points','std'),
+                                  min_points =  ('points','min'),
+                                  max_points =  ('points','max'),
+                                  count_obs   = ('points', len)))
+
+display(teamrace_filtered.head())
+
+
+
+7. Try it yourself: group by "raceId" and calculate average laps and points
+python
+Copy
+Edit
+example = (results.groupby("raceId")
+                    .agg(mean_laps = ('laps','mean'),
+                         mean_points = ('points','mean')))
+display(example.head())
+
+
+
+8. Try it yourself: group by "constructorId" and sort descending by average points
+python
+Copy
+Edit
+sorted_data = (results.groupby("constructorId")
+                        .agg(mean_points = ('points','mean'))
+                        .sort_values("mean_points", ascending = False))
+
+display(sorted_data.head())
+
+
+
+9. Merge average stats from drivers_agg into results
+Merge using "driverId" as the key
+
+python
+Copy
+Edit
+results_merge = pd.merge(results,
+                         drivers_agg,
+                         on = "driverId",
+                         how = "left")
+
+display(results_merge.head())
+
+
+10. Plot: points in race vs. driver's average points
+Scatter plot of "points" (y-axis) vs "mean_points" (x-axis)
+
+python
+Copy
+Edit
+plt.scatter(x = results_merge['mean_points'], y = results_merge['points'], alpha = 0.6)
+plt.xlabel("Average Points per Driver (mean_points)")
+plt.ylabel("Points in Individual Race (points)")
+plt.title("Driver's Race Performance vs. Their Average")
+plt.show()
+11. Merge team/race stats into original data
+Merge teamrace_agg into results using ["raceId", "constructorId"] as keys
+
+python
+Copy
+Edit
+results_merge_2 = pd.merge(results,
+                           teamrace_agg,
+                           on = ["raceId", "constructorId"],
+                           how = "left")
+
+display(results_merge_2.head())
+
+
+Leson 15 - CONCAT
+
+3. Subset circuits by country using .query()
+Create three datasets:
+
+circuits_spain: circuits in Spain
+
+circuits_usa: circuits in United States or USA
+
+circuits_malaysia: circuits in Malaysia
+
+python
+Copy
+Edit
+circuits_spain = circuits_raw.query('country == "Spain"')
+circuits_usa = circuits_raw.query('country == "United States" or country == "USA"')
+circuits_malaysia = circuits_raw.query('country == "Malaysia"')
+
+
+4. Concatenate circuits for Spain, USA, and Malaysia
+Combine the three datasets into a single one called circuits_concat
+
+python
+Copy
+Edit
+circuits_concat = pd.concat([circuits_spain, circuits_usa, circuits_malaysia])
+display(circuits_concat)
+
+
+
+5. Drop columns and concatenate
+Drop "circuitRef" and "location" from circuits_spain
+
+Concatenate the modified circuits_spain with circuits_usa
+
+python
+Copy
+Edit
+circuits_spain_drop = circuits_spain.drop(columns=["circuitRef", "location"])
+circuits_spain_usa_concat = pd.concat([circuits_spain_drop, circuits_usa])
+display(circuits_spain_usa_concat)
+
+
+6. Try it yourself: Concatenate USA and Malaysia datasets
+Concatenate circuits_usa and circuits_malaysia into circuits_us_malaysia
+
+python
+Copy
+Edit
+circuits_us_malaysia = pd.concat([circuits_usa, circuits_malaysia])
+display(circuits_us_malaysia)
+
+2. Explore similar column names before merging
+Display the sorted unique values in the "name" column of both datasets
+
+python
+Copy
+Edit
+unique_data_races = pd.unique(races_raw["name"].sort_values())
+unique_data_circuits = pd.unique(circuits_raw["name"].sort_values())
+
+print("Race names:")
+print(unique_data_races)
+print("\nCircuit names:")
+print(unique_data_circuits)
+3. Rename columns using dictionaries
+Rename "name" to "circuit_name" in circuits_raw and save as circuits
+
+python
+Copy
+Edit
+dict_rename_circuits = {"name": "circuit_name"}
+circuits = circuits_raw.rename(columns=dict_rename_circuits)
+4. Try it yourself: rename "name" to "race_name"
+Rename in races_raw and save as races
+
+python
+Copy
+Edit
+dict_rename_name = {"name": "race_name"}
+races = races_raw.rename(columns=dict_rename_name)
+5. Merge races_raw and circuits datasets
+Merge using "circuitId" as the key
+
+Merge only selected columns: "raceId", "year", "circuitId" from races and "circuit_name", "location" from circuits
+
+python
+Copy
+Edit
+races_merge = pd.merge(races_raw[['raceId', 'year', 'circuitId']],
+                       circuits[["circuitId", "circuit_name", "location"]],
+                       on="circuitId",
+                       how="left")
+
+display(races_merge.head())
+6. Merge race dates into results data
+Merge "date" from races_raw into results_raw using "raceId"
+
+python
+Copy
+Edit
+results_merge = pd.merge(results_raw,
+                         races_raw[["raceId", "date"]],
+                         on="raceId",
+                         how="left")
+
+display(results_merge.head())
+7. Try it yourself: rename name_x and name_y
+Merge races_raw with circuits_raw (without renaming first)
+
+Then rename "name_x" to "race_name" and "name_y" to "circuit_name"
+
+python
+Copy
+Edit
+races_merge_pitfall = pd.merge(races_raw,
+                               circuits_raw[["circuitId", "name"]],
+                               on="circuitId",
+                               how="left")
+
+# Rename columns
+rename_dict = {"name_x": "race_name", "name_y": "circuit_name"}
+races_merge_pitfall = races_merge_pitfall.rename(columns=rename_dict)
+
+display(races_merge_pitfall[["raceId", "race_name", "circuit_name"]].head())
+8. Try it yourself: merge "alt", "lng", and "lat" into races
+Merge those three location variables from circuits_raw into races_raw
+
+python
+Copy
+Edit
+races_with_coords = pd.merge(races_raw,
+                             circuits_raw[["circuitId", "alt", "lng", "lat"]],
+                             on="circuitId",
+                             how="left")
+
+display(races_with_coords[["raceId", "circuitId", "alt", "lng", "lat"]].head())
+
+
+Lesson 15 - REVIEW COMMANDS
+
+2. Explore similar column names before merging
+Display the sorted unique values in the "name" column of both datasets
+
+python
+Copy
+Edit
+unique_data_races = pd.unique(races_raw["name"].sort_values())
+unique_data_circuits = pd.unique(circuits_raw["name"].sort_values())
+
+print("Race names:")
+print(unique_data_races)
+print("\nCircuit names:")
+print(unique_data_circuits)
+
+
+3. Rename columns using dictionaries
+Rename "name" to "circuit_name" in circuits_raw and save as circuits
+
+python
+Copy
+Edit
+dict_rename_circuits = {"name": "circuit_name"}
+circuits = circuits_raw.rename(columns=dict_rename_circuits)
+
+
+4. Try it yourself: rename "name" to "race_name"
+Rename in races_raw and save as races
+
+python
+Copy
+Edit
+dict_rename_name = {"name": "race_name"}
+races = races_raw.rename(columns=dict_rename_name)
+
+
+5. Merge races_raw and circuits datasets
+Merge using "circuitId" as the key
+
+Merge only selected columns: "raceId", "year", "circuitId" from races and "circuit_name", "location" from circuits
+
+python
+Copy
+Edit
+races_merge = pd.merge(races_raw[['raceId', 'year', 'circuitId']],
+                       circuits[["circuitId", "circuit_name", "location"]],
+                       on="circuitId",
+                       how="left")
+
+display(races_merge.head())
+
+
+6. Merge race dates into results data
+Merge "date" from races_raw into results_raw using "raceId"
+
+python
+Copy
+Edit
+results_merge = pd.merge(results_raw,
+                         races_raw[["raceId", "date"]],
+                         on="raceId",
+                         how="left")
+
+display(results_merge.head())
+
+
+7. Try it yourself: rename name_x and name_y
+Merge races_raw with circuits_raw (without renaming first)
+
+Then rename "name_x" to "race_name" and "name_y" to "circuit_name"
+
+python
+Copy
+Edit
+races_merge_pitfall = pd.merge(races_raw,
+                               circuits_raw[["circuitId", "name"]],
+                               on="circuitId",
+                               how="left")
+
+# Rename columns
+rename_dict = {"name_x": "race_name", "name_y": "circuit_name"}
+races_merge_pitfall = races_merge_pitfall.rename(columns=rename_dict)
+
+display(races_merge_pitfall[["raceId", "race_name", "circuit_name"]].head())
+
+
+8. Try it yourself: merge "alt", "lng", and "lat" into races
+Merge those three location variables from circuits_raw into races_raw
+
+python
+Copy
+Edit
+races_with_coords = pd.merge(races_raw,
+                             circuits_raw[["circuitId", "alt", "lng", "lat"]],
+                             on="circuitId",
+                             how="left")
+
+display(races_with_coords[["raceId", "circuitId", "alt", "lng", "lat"]].head())
+
+
+Lecture 16
+
+2. Convert the "date_str" column to datetime format
+Store it in a new column "date"
+
+python
+Copy
+Edit
+financial["date"] = pd.to_datetime(financial["date_str"])
+
+
+3. Check data types
+Display data types for all columns in financial
+
+python
+Copy
+Edit
+print(financial.dtypes)
+
+
+4. Plot the S&P 500 index over time
+Use "date" on the x-axis and "sp500" on the y-axis
+
+python
+Copy
+Edit
+plt.plot("date", "sp500", data=financial)
+plt.xlabel("Time")
+plt.ylabel("S&P 500 Index")
+plt.title("The evolution of the stock market")
+plt.show()
+
+
+5. Try it yourself: Plot Dow Jones over time
+python
+Copy
+Edit
+plt.plot("date", "djia", data=financial)
+plt.xlabel("Time")
+plt.ylabel("Dow Jones")
+plt.title("The evolution of the stock market according to the Dow Jones")
+plt.show()
+6. Convert datetime to formatted strings
+Create new columns:
+
+"month_str": month number (e.g. "03")
+
+"week_str": week number (e.g. "12")
+
+"monthname": full month name (e.g. "March")
+
+"weekdayname": weekday (e.g. "Monday")
+
+python
+Copy
+Edit
+financial["month_str"] = financial["date"].dt.strftime("%m")
+financial["week_str"] = financial["date"].dt.strftime("%W")
+financial["monthname"] = financial["date"].dt.strftime("%B")
+financial["weekdayname"] = financial["date"].dt.strftime("%A")
+
+7. Try it yourself: Create a date_test column
+Format example: "Monday, December 31, 2023"
+
+python
+Copy
+Edit
+financial["date_test"] = financial["date"].dt.strftime("%A, %B %d, %Y")
+display(financial[["date", "date_test"]].head())
+
+
+8. Parse a custom-formatted date column
+Use pd.to_datetime() to convert "date_ex1" and "date_ex2"
+
+python
+Copy
+Edit
+financial['date_ex1_dt'] = pd.to_datetime(financial["date_ex1"], format="%B %d %Y")
+financial['date_ex2_dt'] = pd.to_datetime(financial["date_ex2"], format="%A, %Y-%m-%d")
+
+
+9. Try it yourself: Parse "date_ex3"
+Format is day-abbreviated month-two digit year (e.g. "31-Mar-23")
+
+python
+Copy
+Edit
+financial['date_ex1_edit'] = pd.to_datetime(financial["date_ex3"], format="%d-%b-%y")
+
+
+10. Compute monthly average S&P 500 and plot
+python
+Copy
+Edit
+month_config = pd.Grouper(key='date', freq='M')
+
+monthlydata = (financial
+               .groupby(month_config)
+               .agg(sp500_mean=("sp500", "mean"))
+               .reset_index())
+
+plt.plot("date", "sp500_mean", data=monthlydata)
+plt.xlabel("Time")
+plt.ylabel("S&P 500")
+plt.title("Monthly average stock market performance")
+plt.show()
+
+
+11. Try it yourself: Weekly standard deviation and plot
+python
+Copy
+Edit
+week_config = pd.Grouper(key='date', freq='W')
+
+weeklydata = (financial
+              .groupby(week_config)
+              .agg(sp500_sd=("sp500", "std"))
+              .reset_index())
+
+plt.plot("date", "sp500_sd", data=weeklydata)
+plt.xlabel("Week")
+plt.ylabel("S&P 500 Standard Deviation")
+plt.title("Weekly Volatility of the S&P 500")
+plt.show()
