@@ -1,0 +1,295 @@
+print("Lydia")
+
+print("I will abide by Emory's code of conduct")
+
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib import ticker
+import matplotlib.dates as mdates
+
+
+LESSON 18
+
+1. Import libraries and load data
+Import the required libraries
+
+Load financial.csv and convert date_str to datetime
+
+Sort the dataset by date
+
+python
+Copy
+Edit
+import pandas as pd
+import matplotlib.pyplot as plt
+
+financial = pd.read_csv("data_raw/financial.csv")
+financial["date"] = pd.to_datetime(financial["date_str"])
+financial = financial.sort_values("date", ascending=True)
+
+
+2. What does [ns] mean in datetime64[ns]?
+python
+Copy
+Edit
+# Answer:
+# It indicates nanosecond-level precision in datetime values.
+
+
+3. Plot S&P 500 and scaled Dow Jones in one plot
+python
+Copy
+Edit
+financial['djia_rescale'] = financial['djia'] / 10
+
+financial[["date", "sp500", "djia_rescale"]].set_index("date").plot()
+plt.xlabel("Time")
+plt.ylabel("Value of Index Funds")
+plt.legend(["S&P 500", "Dow Jones"])
+plt.title("S&P 500 and Dow Jones (rescaled)")
+plt.show()
+
+
+
+4. Compute growth for both indexes
+python
+Copy
+Edit
+financial["diff_sp500"] = financial["sp500"].diff()
+financial["lag_sp500"] = financial["sp500"].shift(1)
+financial["growth_sp500"] = (financial["diff_sp500"] / financial["lag_sp500"]) * 100
+
+financial["growth_djia"] = (financial["djia"].diff() / financial["djia"].shift(1)) * 100
+
+
+5. Plot S&P 500 and Dow Jones growth on same plot
+python
+Copy
+Edit
+plt.plot("date", "growth_sp500", data=financial)
+plt.plot("date", "growth_djia", data=financial)
+plt.xlabel("Time")
+plt.ylabel("Daily Percentage Change")
+plt.title("Growth of S&P 500 and Dow Jones")
+plt.legend(["S&P 500", "Dow Jones"])
+plt.show()
+
+
+6. Subset financial data between two dates
+python
+Copy
+Edit
+subset_between = financial[(financial["date"] >= "2020-03-01") & 
+                           (financial["date"] <= "2020-05-01")]
+7. Create flags and plot shaded COVID period
+python
+Copy
+Edit
+financial["bool_period"] = financial["date"].between("2020-03-01", "2020-05-01")
+
+plt.plot("date", "growth_sp500", data=financial)
+plt.fill_between(x=financial["date"],
+                 y1=financial["growth_sp500"].min(),
+                 y2=financial["growth_sp500"].max(),
+                 where=financial["bool_period"],
+                 alpha=0.2, color="red")
+plt.title("The S&P 500 during the start of COVID")
+plt.xlabel("Time")
+plt.ylabel("Daily Percentage Change")
+plt.show()
+
+
+8. Try it yourself: Plot Dow Jones growth and highlight ±4%
+python
+Copy
+Edit
+financial["bool_volatility"] = (financial["growth_djia"] >= 4) | (financial["growth_djia"] <= -4)
+
+plt.plot("date", "growth_djia", data=financial)
+plt.fill_between(x=financial["date"],
+                 y1=financial["growth_djia"].min(),
+                 y2=financial["growth_djia"].max(),
+                 where=financial["bool_volatility"],
+                 alpha=0.2, color="orange")
+plt.title("Dow Jones Daily Growth with ±4% Highlight")
+plt.xlabel("Time")
+plt.ylabel("Daily Percentage Change")
+plt.show()
+
+
+9. Convert wide to long format for sp500 and djia
+python
+Copy
+Edit
+financial_long = pd.melt(financial,
+                         var_name="portfolio_type",
+                         value_name="portfolio_value",
+                         id_vars="date",
+                         value_vars=["sp500", "djia"])
+
+display(financial_long.head())
+
+
+
+10. Pivot back to wide format
+python
+Copy
+Edit
+financial_wide = pd.pivot(financial_long,
+                          index="date",
+                          columns="portfolio_type",
+                          values="portfolio_value").reset_index()
+
+display(financial_wide.head())
+11. Try it yourself: Convert growth_sp500 and growth_djia to long format
+python
+Copy
+Edit
+financial_growth_long = pd.melt(financial,
+                                var_name="growth_type",
+                                value_name="growth_value",
+                                id_vars="date",
+                                value_vars=["growth_sp500", "growth_djia"])
+
+display(financial_growth_long.head())
+
+
+
+LESSON 19
+
+1. Import the required libraries and dataset
+Import matplotlib.pyplot, pandas, matplotlib.dates, and ticker
+
+Read the CSV and parse the date column
+
+python
+Copy
+Edit
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib import ticker
+import matplotlib.dates as mdates
+
+portfolios = pd.read_csv("data_raw/portfolios.csv")
+portfolios["date"] = pd.to_datetime(portfolios["date_str"])
+
+
+2. Create a 1x1 subplot showing growth of S&P 500 and Dow Jones
+Use .set_index("date")
+
+Label axes, add title and legend
+
+python
+Copy
+Edit
+plot_data = portfolios[["date", "growth_sp500", "growth_djia"]].set_index("date")
+
+fig, ax = plt.subplots(1, 1)
+ax.plot(plot_data, linewidth=1)
+ax.legend(["S&P 500", "Dow Jones"])
+ax.set_ylabel("Daily percentage growth")
+ax.set_xlabel("Date")
+ax.set_title("Portfolio performance over time")
+plt.show()
+3. Try it yourself: Create a scatter plot of growth_sp500 (y) vs growth_djia (x)
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.scatter(x=portfolios["growth_djia"], y=portfolios["growth_sp500"])
+ax.set_xlabel("Dow Jones Growth")
+ax.set_ylabel("S&P 500 Growth")
+ax.set_title("Scatter Plot of Daily Growth: DJIA vs. S&P 500")
+plt.show()
+
+
+
+4. Format axis labels with font size, color, and padding
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.plot(plot_data)
+ax.legend(["S&P 500", "Dow Jones"])
+
+ax.set_ylabel("Daily percentage growth", fontsize=20, color="pink", labelpad=5)
+ax.set_xlabel("Date", fontsize=8, color="purple", labelpad=40)
+plt.show()
+
+
+5. Format tick labels
+Set color and rotation for x and y ticks
+
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.plot(plot_data)
+ax.legend(["S&P 500", "Dow Jones"])
+ax.set_ylabel("Daily percentage growth")
+ax.set_xlabel("Date")
+
+ax.xaxis.set_tick_params(labelsize=10, rotation=-90, colors="red")
+ax.yaxis.set_tick_params(labelsize=50, rotation=0, colors="blue")
+plt.show()
+
+
+6. Try it yourself: Format histogram x-axis
+(a) Rotate x labels 45 degrees
+
+(b) Increase x-axis label padding to 15
+
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.hist(x=portfolios["growth_sp500"])
+ax.set_xlabel("Daily % Growth", labelpad=15)
+ax.set_ylabel("Frequency")
+ax.set_title("Histogram of S&P 500 Growth")
+ax.xaxis.set_tick_params(rotation=45)
+plt.show()
+
+
+7. Format date axis with 12-month intervals and custom labels
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.plot(plot_data)
+ax.legend(["S&P 500", "Dow Jones"])
+ax.set_ylabel("Daily percentage growth")
+ax.set_xlabel("Date")
+
+config_ticks = mdates.MonthLocator(interval=12)
+format_ticks = mdates.DateFormatter('%y-%m-%d')
+
+ax.xaxis.set_major_locator(config_ticks)
+ax.xaxis.set_major_formatter(format_ticks)
+plt.show()
+
+
+8. Try it yourself: Format numeric y-axis
+Include 8 ticks, with 1 decimal place
+
+python
+Copy
+Edit
+fig, ax = plt.subplots(1, 1)
+ax.plot(plot_data)
+ax.legend(["S&P 500", "Dow Jones"])
+ax.set_ylabel("Daily percentage growth")
+ax.set_xlabel("Date")
+
+config_ticks = ticker.MaxNLocator(8)
+format_ticks = ticker.FormatStrFormatter('%.1f')
+
+ax.yaxis.set_major_locator(config_ticks)
+ax.yaxis.set_major_formatter(format_ticks)
+ax.set_ylim(-20, 20)
+
+
+
+
+LECTURE 17
+
