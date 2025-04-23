@@ -36,11 +36,13 @@ panel on the left:
 
 Delete existing table
 -- SQLBook: Code
--- Active: 1710903290079@@127.0.0.1@5432@postgres
+-- Active: 1737310465394@@127.0.0.1@5432@lydiaking
+-- Active: 1737310465394@@127.0.0.1@5432@postgres290079@@127.0.0.1@5432@postgres
 -- If the table already exists we can drop it:
 -- If it doesn't exist nothing happens
 -- System commands are in upper case and user defined
 -- names are in lower case
+-- everything ends w a semicolon
 -- Comments are written with double dashes "--" rather than hastag (#)
 
 DROP TABLE IF EXISTS drivers;
@@ -55,7 +57,7 @@ Create empty table from codebook
 
 CREATE TABLE drivers(
     driver_id int,
-    driver_name varchar(30),
+    driver_name varchar(30), -- Parentheses show the maximum number of characters
     nationality varchar(15),
     victories int
 );    
@@ -64,7 +66,7 @@ CREATE TABLE drivers(
 
 Add rows to table
 -- SQLBook: Code
--- "INSET INTO" adds rows with VALUES ... to the bottom of the table
+-- "INSERT INTO" adds rows with VALUES ... to the bottom of the table
 -- In SQL different lines need to be separated by a semicolon ";"
 -- You write system commands in capital letters to easily distinguish
 -- column names from system commands
@@ -100,7 +102,7 @@ Try it yourself!
 -- Select a new driver id (needs to be unique)
 -- Make sure to deparate arguments by a semicolon!
 
-
+INSERT INTO drivers VALUES (5, 'Lydia King', 'American',120);
 
 
 -- SQLBook: Markup
@@ -129,7 +131,7 @@ Subsetting rows
 -- SQLBook: Code
 -- The WHERE command evaluates logical conditions to subset rows
 SELECT * FROM drivers
-WHERE nationality = 'German';
+WHERE nationality = 'American';
 
 -- Evalute OR conditions
 SELECT * FROM drivers
@@ -189,7 +191,8 @@ with more than 60 victories
 -- SQLBook: Code
 -- Write your own code!
 
-
+SELECT driver_id, nationality FROM drivers
+WHERE victories > 60;
 
 -- SQLBook: Markup
 # <span style="color:darkblue"> III. Groupby + Chaining </span>
